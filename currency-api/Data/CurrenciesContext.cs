@@ -71,6 +71,68 @@ namespace currencyApi.Data
                 }
             );
 
+            modelBuilder.Entity<User>(
+                entity =>
+                {
+                    entity.ToTable("Users");
+
+                    entity.HasKey(r => r.Id);
+
+                    entity.Property(r => r.Id).ValueGeneratedOnAdd();
+
+                    entity.HasQueryFilter(r => r.IsDeleted == false);
+
+                    if (Database.IsInMemory())
+                            entity.Property(c => c.Id).HasValueGenerator<InMemoryIntegerValueGenerator<long>>();
+                }
+            );
+
+            modelBuilder.Entity<UserRole>(
+                entity =>
+                {
+                    entity.ToTable("UserRoles");
+
+                    entity.HasKey(r => r.Id);
+
+                    entity.Property(r => r.Id).ValueGeneratedOnAdd();
+
+                    if (Database.IsInMemory())
+                            entity.Property(c => c.Id).HasValueGenerator<InMemoryIntegerValueGenerator<long>>();
+                }
+            );
+
+            modelBuilder.Entity<UserRoleRelation>(
+                entity =>
+                {
+                    entity.ToTable("UserRoleRelations");
+
+                    entity.HasKey(r => r.Id);
+
+                    entity.Property(r => r.Id).ValueGeneratedOnAdd();
+
+                    entity.HasQueryFilter(r => r.IsDeleted == false);
+
+                    if (Database.IsInMemory())
+                            entity.Property(c => c.Id).HasValueGenerator<InMemoryIntegerValueGenerator<long>>();
+
+                    entity.HasIndex(r => new { r.UserId, r.RoleId })
+                          .IsUnique();
+
+                    entity.HasOne(r => r.User)
+                          .WithMany(u => u.UserRoleRelations)
+                          .HasForeignKey(r => r.UserId);
+
+                    entity.HasOne(r => r.Role)
+                          .WithMany()
+                          .HasForeignKey(r => r.RoleId);
+                }
+            );
+
+             modelBuilder.Entity<User>().HasData(
+                new User { Id = 1, UserName = "admin", Email = "user@currencies.cur", PasswordHash="xxx",  CreatedAt= DateTime.UtcNow, IsActive=true, IsDeleted=false },
+                new User { Id = 2, UserName = "user", Email = "user@currencies.cur", PasswordHash="xxx",CreatedAt= DateTime.UtcNow, IsActive=true, IsDeleted=false }
+            );
+
             modelBuilder.Entity<Currency>().HasData(
                 new Currency { Id = 1, Code = "EUR", Description = "Euro", CreatedAt= DateTime.UtcNow, IsActive=true, IsDeleted=false },
                 new Currency { Id = 2, Code = "USD", Description = "US Dollar", CreatedAt= DateTime.UtcNow, IsActive=true, IsDeleted=false  },
