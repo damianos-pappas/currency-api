@@ -66,7 +66,7 @@ namespace currency_api.Migrations
                         {
                             Id = 1L,
                             Code = "EUR",
-                            CreatedAt = new DateTime(2020, 3, 25, 15, 18, 57, 559, DateTimeKind.Utc).AddTicks(1978),
+                            CreatedAt = new DateTime(2020, 3, 25, 19, 54, 39, 955, DateTimeKind.Utc).AddTicks(5071),
                             Description = "Euro",
                             IsActive = true,
                             IsDeleted = false
@@ -75,7 +75,7 @@ namespace currency_api.Migrations
                         {
                             Id = 2L,
                             Code = "USD",
-                            CreatedAt = new DateTime(2020, 3, 25, 15, 18, 57, 559, DateTimeKind.Utc).AddTicks(3167),
+                            CreatedAt = new DateTime(2020, 3, 25, 19, 54, 39, 955, DateTimeKind.Utc).AddTicks(5131),
                             Description = "US Dollar",
                             IsActive = true,
                             IsDeleted = false
@@ -84,7 +84,7 @@ namespace currency_api.Migrations
                         {
                             Id = 3L,
                             Code = "CHF",
-                            CreatedAt = new DateTime(2020, 3, 25, 15, 18, 57, 559, DateTimeKind.Utc).AddTicks(3205),
+                            CreatedAt = new DateTime(2020, 3, 25, 19, 54, 39, 955, DateTimeKind.Utc).AddTicks(5133),
                             Description = "Swiss Franc",
                             IsActive = true,
                             IsDeleted = false
@@ -93,7 +93,7 @@ namespace currency_api.Migrations
                         {
                             Id = 4L,
                             Code = "GBP",
-                            CreatedAt = new DateTime(2020, 3, 25, 15, 18, 57, 559, DateTimeKind.Utc).AddTicks(3207),
+                            CreatedAt = new DateTime(2020, 3, 25, 19, 54, 39, 955, DateTimeKind.Utc).AddTicks(5135),
                             Description = "British Pound",
                             IsActive = true,
                             IsDeleted = false
@@ -102,7 +102,7 @@ namespace currency_api.Migrations
                         {
                             Id = 5L,
                             Code = "JPY",
-                            CreatedAt = new DateTime(2020, 3, 25, 15, 18, 57, 559, DateTimeKind.Utc).AddTicks(3306),
+                            CreatedAt = new DateTime(2020, 3, 25, 19, 54, 39, 955, DateTimeKind.Utc).AddTicks(5136),
                             Description = "Japan Yen",
                             IsActive = true,
                             IsDeleted = false
@@ -111,7 +111,7 @@ namespace currency_api.Migrations
                         {
                             Id = 6L,
                             Code = "CAD",
-                            CreatedAt = new DateTime(2020, 3, 25, 15, 18, 57, 559, DateTimeKind.Utc).AddTicks(3308),
+                            CreatedAt = new DateTime(2020, 3, 25, 19, 54, 39, 955, DateTimeKind.Utc).AddTicks(5138),
                             Description = "Canadian Dollar",
                             IsActive = true,
                             IsDeleted = false
@@ -166,7 +166,7 @@ namespace currency_api.Migrations
                         {
                             Id = 1L,
                             BaseCurrencyId = 1L,
-                            CreatedAt = new DateTime(2020, 3, 25, 15, 18, 57, 560, DateTimeKind.Utc).AddTicks(7545),
+                            CreatedAt = new DateTime(2020, 3, 25, 19, 54, 39, 955, DateTimeKind.Utc).AddTicks(6848),
                             IsActive = true,
                             IsDeleted = false,
                             Rate = 1.3764m,
@@ -176,7 +176,7 @@ namespace currency_api.Migrations
                         {
                             Id = 2L,
                             BaseCurrencyId = 1L,
-                            CreatedAt = new DateTime(2020, 3, 25, 15, 18, 57, 560, DateTimeKind.Utc).AddTicks(7618),
+                            CreatedAt = new DateTime(2020, 3, 25, 19, 54, 39, 955, DateTimeKind.Utc).AddTicks(6919),
                             IsActive = true,
                             IsDeleted = false,
                             Rate = 1.2079m,
@@ -186,7 +186,7 @@ namespace currency_api.Migrations
                         {
                             Id = 3L,
                             BaseCurrencyId = 1L,
-                            CreatedAt = new DateTime(2020, 3, 25, 15, 18, 57, 560, DateTimeKind.Utc).AddTicks(7621),
+                            CreatedAt = new DateTime(2020, 3, 25, 19, 54, 39, 955, DateTimeKind.Utc).AddTicks(6921),
                             IsActive = true,
                             IsDeleted = false,
                             Rate = 0.8731m,
@@ -196,7 +196,7 @@ namespace currency_api.Migrations
                         {
                             Id = 4L,
                             BaseCurrencyId = 2L,
-                            CreatedAt = new DateTime(2020, 3, 25, 15, 18, 57, 560, DateTimeKind.Utc).AddTicks(7623),
+                            CreatedAt = new DateTime(2020, 3, 25, 19, 54, 39, 955, DateTimeKind.Utc).AddTicks(6923),
                             IsActive = true,
                             IsDeleted = false,
                             Rate = 76.7200m,
@@ -206,7 +206,7 @@ namespace currency_api.Migrations
                         {
                             Id = 5L,
                             BaseCurrencyId = 3L,
-                            CreatedAt = new DateTime(2020, 3, 25, 15, 18, 57, 560, DateTimeKind.Utc).AddTicks(7624),
+                            CreatedAt = new DateTime(2020, 3, 25, 19, 54, 39, 955, DateTimeKind.Utc).AddTicks(6924),
                             IsActive = true,
                             IsDeleted = false,
                             Rate = 1.1379m,
@@ -216,12 +216,142 @@ namespace currency_api.Migrations
                         {
                             Id = 6L,
                             BaseCurrencyId = 4L,
-                            CreatedAt = new DateTime(2020, 3, 25, 15, 18, 57, 560, DateTimeKind.Utc).AddTicks(7626),
+                            CreatedAt = new DateTime(2020, 3, 25, 19, 54, 39, 955, DateTimeKind.Utc).AddTicks(6926),
                             IsActive = true,
                             IsDeleted = false,
                             Rate = 1.5648m,
                             TargetCurrencyId = 6L
                         });
+                });
+
+            modelBuilder.Entity("currencyApi.Models.User", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedByUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LockoutEnd")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedByUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            AccessFailedCount = 0,
+                            CreatedAt = new DateTime(2020, 3, 25, 19, 54, 39, 953, DateTimeKind.Utc).AddTicks(9980),
+                            Email = "user@currencies.cur",
+                            IsActive = true,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            PasswordHash = "xxx",
+                            UserName = "admin"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            AccessFailedCount = 0,
+                            CreatedAt = new DateTime(2020, 3, 25, 19, 54, 39, 954, DateTimeKind.Utc).AddTicks(1223),
+                            Email = "user@currencies.cur",
+                            IsActive = true,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            PasswordHash = "xxx",
+                            UserName = "user"
+                        });
+                });
+
+            modelBuilder.Entity("currencyApi.Models.UserRole", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserRoles");
+                });
+
+            modelBuilder.Entity("currencyApi.Models.UserRoleRelation", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedByUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("RoleId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedByUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId", "RoleId")
+                        .IsUnique();
+
+                    b.ToTable("UserRoleRelations");
                 });
 
             modelBuilder.Entity("currencyApi.Models.CurrencyRate", b =>
@@ -235,6 +365,21 @@ namespace currency_api.Migrations
                     b.HasOne("currencyApi.Models.Currency", "TargetCurrency")
                         .WithMany()
                         .HasForeignKey("TargetCurrencyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("currencyApi.Models.UserRoleRelation", b =>
+                {
+                    b.HasOne("currencyApi.Models.UserRole", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("currencyApi.Models.User", "User")
+                        .WithMany("UserRoleRelations")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
