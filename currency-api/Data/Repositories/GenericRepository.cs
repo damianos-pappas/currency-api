@@ -18,10 +18,17 @@ namespace currencyApi.Data
             _unitOfWork.Context.Set<T>().Add(entity);
         }
 
-        public void Delete(T entity)
+        public void Delete(long Id, bool safeDelete =false)
         {
-            T existing = _unitOfWork.Context.Set<T>().Find(entity);
-            if (existing != null) _unitOfWork.Context.Set<T>().Remove(existing);
+            T existingEntity = _unitOfWork.Context.Set<T>().Find(Id);
+            
+            if (existingEntity == null && !safeDelete)
+                throw new Exception("Entity Not Found");
+
+            if(typeof(ISoftDelete).IsAssignableFrom(typeof(T)))
+                (existingEntity as ISoftDelete).IsDeleted = true;
+            else
+                _unitOfWork.Context.Set<T>().Remove(existingEntity);
         }
 
         public IEnumerable<T> Get()
@@ -29,12 +36,9 @@ namespace currencyApi.Data
             return _unitOfWork.Context.Set<T>().AsEnumerable<T>();
         }
 
-
-        public IEnumerable<T> Get(long Id)
+        public T Get(long Id)
         {
-            if(!typeof(IIdentifiable).IsAssignableFrom(typeof(T)))
-                throw new NotSupportedException("Requested entity does not have Id property ");
-            return _unitOfWork.Context.Set<T>().Where(x => (x as IIdentifiable).Id == Id).AsEnumerable<T>();
+            return _unitOfWork.Context.Set<T>().Find(Id);
         }
 
         public IEnumerable<T> Get(System.Linq.Expressions.Expression<Func<T, bool>> predicate)

@@ -26,6 +26,8 @@ namespace currencyApi.Data
 
                     entity.Property(c => c.Id).ValueGeneratedOnAdd();
 
+                    entity.HasQueryFilter(r => r.IsDeleted == false);
+
                     if (Database.IsInMemory())
                             entity.Property(c => c.Id).HasValueGenerator<InMemoryIntegerValueGenerator<long>>();
 
@@ -50,6 +52,8 @@ namespace currencyApi.Data
                     entity.HasKey(r => r.Id);
 
                     entity.Property(r => r.Id).ValueGeneratedOnAdd();
+
+                    entity.HasQueryFilter(r => r.IsDeleted == false);
 
                     if (Database.IsInMemory())
                             entity.Property(c => c.Id).HasValueGenerator<InMemoryIntegerValueGenerator<long>>();

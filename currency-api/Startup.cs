@@ -34,7 +34,7 @@ namespace currency_api
             services.AddDbContext<CurrenciesContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
-
+            
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );

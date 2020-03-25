@@ -44,5 +44,19 @@ namespace currencyApi.Controllers
             currenciesRepo.Update(currency);
             _unitOfWork.Commit();
         }
+
+        [HttpDelete("{id}")]
+        public void Delete( long id)
+        {
+            // IEnumerable<CurrencyRate> res = _db.CurrencyRates.Include(r => r.BaseCurrency)
+            //                                 .Include(r => r.TargetCurrency).ToList();
+
+            CurrenciesRepository currenciesRepo = new CurrenciesRepository(_unitOfWork);
+            //var currency = currenciesRepo.Get(id);
+
+            
+            currenciesRepo.Delete(id);
+            _unitOfWork.Commit();
+        }
     }
 }
