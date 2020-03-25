@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace currencyApi.Models
 {
-    public abstract class BaseModel {
+    public abstract class BaseModel :IIdentifiable, IAuditable, IActive, ISoftDelete {
         public long Id {get;set;}
         public DateTime? CreatedAt {get;set;}
         public string CreatedByUser {get;set;}
