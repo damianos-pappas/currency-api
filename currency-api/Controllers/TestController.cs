@@ -14,20 +14,35 @@ namespace currencyApi.Controllers
     public class TestController : ControllerBase
     {
         CurrenciesContext _db;
+        IUnitOfWork _unitOfWork;
         public TestController(CurrenciesContext db)
         {
             this._db = db;
+            this._unitOfWork = new UnitOfWork(db);
         }
 
         [HttpGet]
-        public IEnumerable<CurrencyRate> Get()
+        public IEnumerable<Currency> Get()
         {
-            IEnumerable<CurrencyRate> res = _db.CurrencyRates.Include(r => r.BaseCurrency)
-                                            .Include(r => r.TargetCurrency).ToList();
+            // IEnumerable<CurrencyRate> res = _db.CurrencyRates.Include(r => r.BaseCurrency)
+            //                                 .Include(r => r.TargetCurrency).ToList();
 
-
+            CurrenciesRepository currenciesRepo = new CurrenciesRepository(_unitOfWork);
+            var res = currenciesRepo.Get();
             return res;
 
+        }
+
+        
+        [HttpPut]
+        public void Update([FromBody] Currency currency)
+        {
+            // IEnumerable<CurrencyRate> res = _db.CurrencyRates.Include(r => r.BaseCurrency)
+            //                                 .Include(r => r.TargetCurrency).ToList();
+
+            CurrenciesRepository currenciesRepo = new CurrenciesRepository(_unitOfWork);
+            currenciesRepo.Update(currency);
+            _unitOfWork.Commit();
         }
     }
 }
