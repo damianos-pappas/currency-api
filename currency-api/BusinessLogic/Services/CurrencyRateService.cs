@@ -21,7 +21,8 @@ namespace currencyApi.BusinessLogic.Services
         public IEnumerable<CurrencyRateDTO> Get(int pageNumber, int pageSize, string sortTerm, bool sortDesc, string searchTerm)
         {
             return _currencyRatesRepo.Get(pageNumber, pageSize, sortTerm, sortDesc, searchTerm)
-            .Select(x => _mapper.Map<CurrencyRateDTO>(x));
+                                    .Select(x => _mapper.Map<CurrencyRateDTO>(x));
+
         }
 
         public CurrencyRateDTO Get(long id)
@@ -32,6 +33,19 @@ namespace currencyApi.BusinessLogic.Services
                 return _mapper.Map<CurrencyRateDTO>(currencyrate);
            
             return null;
+        }
+
+        public decimal? GetByRateByCodes(string baseCode, string targetCode ){
+            CurrencyRate currencyrate = _currencyRatesRepo.GetByCodes(baseCode, targetCode);
+
+            if (currencyrate != null)
+                return currencyrate.Rate;
+           
+            return null;
+        }
+        
+        public IEnumerable<CurrencyRateDTO> GetByBaseCode(string baseCode){
+            return _currencyRatesRepo.GetByBaseCode(baseCode).Select(x => _mapper.Map<CurrencyRateDTO>(x));
         }
 
         public CurrencyRateDTO Add(CurrencyRateDTO currencyRateDTO)

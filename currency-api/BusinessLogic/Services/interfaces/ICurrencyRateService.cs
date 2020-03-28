@@ -10,6 +10,10 @@ namespace currencyApi.BusinessLogic.Services
 
         CurrencyRateDTO Get(long id);
 
+        decimal? GetByRateByCodes(string baseCode, string targetCode );
+        
+        IEnumerable<CurrencyRateDTO> GetByBaseCode(string baseCode);
+
         CurrencyRateDTO Add(CurrencyRateDTO entity);
 
         void Delete(long Id, bool safeDelete = false);

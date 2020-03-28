@@ -68,6 +68,8 @@ namespace currencyApi.Data
                     entity.HasOne(r => r.TargetCurrency)
                           .WithMany()
                           .HasForeignKey(r => r.TargetCurrencyId);
+
+                     entity.Property(r =>r.Rate).HasColumnType("decimal(18, 10)");
                 }
             );
 
