@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using currencyApi.BusinessLogic.Services;
 using currencyApi.Data;
 using Microsoft.AspNetCore.Builder;
@@ -37,13 +38,14 @@ namespace currency_api
             );
             
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            
+
             services.AddScoped<ICurrenciesRepository, CurrenciesRepository>();
             services.AddScoped<ICurrencyRatesRepository, CurrencyRatesRepository>();
-            services.AddScoped<IUsersRepository, UsersRepository>();
-
 
             services.AddScoped<ICurrencyService, CurrencyService>();
+            services.AddScoped<ICurrencyRateService, CurrencyRateService>();
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
