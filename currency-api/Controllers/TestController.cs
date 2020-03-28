@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using currencyApi.BusinessLogic.Services;
 using currencyApi.Data;
 using currencyApi.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +16,11 @@ namespace currencyApi.Controllers
     {
         CurrenciesContext _db;
         IUnitOfWork _unitOfWork;
-        public TestController(CurrenciesContext db)
+
+        ICurrencyService _srv;
+        public TestController(ICurrencyService srv)
         {
-            this._db = db;
-            this._unitOfWork = new UnitOfWork(db);
+            this._srv = srv;
         }
 
         [HttpGet]
@@ -28,7 +30,7 @@ namespace currencyApi.Controllers
             //                                 .Include(r => r.TargetCurrency).ToList();
 
             CurrenciesRepository currenciesRepo = new CurrenciesRepository(_unitOfWork);
-            var res = currenciesRepo.Get();
+            var res = _srv.Get();
             return res;
 
         }

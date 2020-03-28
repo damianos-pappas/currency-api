@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using currencyApi.BusinessLogic.Services;
 using currencyApi.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +36,15 @@ namespace currency_api
                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
             
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            
+            services.AddScoped<ICurrenciesRepository, CurrenciesRepository>();
+            services.AddScoped<ICurrencyRatesRepository, CurrencyRatesRepository>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
+
+
+            services.AddScoped<ICurrencyService, CurrencyService>();
+
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
