@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using currencyApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.InMemory.ValueGeneration.Internal;
@@ -14,6 +16,9 @@ namespace currencyApi.Data
 
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<CurrencyRate> CurrencyRates { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<UserRoleRelation> UserRoleRelations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -154,7 +159,21 @@ namespace currencyApi.Data
             );
         }
 
+            public override int SaveChanges()
+                {
+                    var entities = ChangeTracker.Entries()
+                                .Where(e => e.State == EntityState.Added|| e.State == EntityState.Modified)
+                                .Select(e => e.Entity);
 
+                    foreach (var entity in entities)
+                    {
+                       if(entity is IValidateable validateableEntity){
+                           validateableEntity.Validate();
+                       }
+                    }
+
+                    return base.SaveChanges();
+                }
 
 
 
