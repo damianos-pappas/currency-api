@@ -13,13 +13,4 @@ namespace currencyApi.Models
         public bool IsActive {get;set;}
         public bool IsDeleted {get;set;}
     }
-
-    public class BaseModelConfiguration<TEntity> : IEntityTypeConfiguration<TEntity>
-    where TEntity : BaseModel
-    {
-        public virtual void Configure(EntityTypeBuilder<TEntity> builder)
-        {
-             builder.Property(r => r.Id).ValueGeneratedOnAdd();  
-        }
-    }
 }
