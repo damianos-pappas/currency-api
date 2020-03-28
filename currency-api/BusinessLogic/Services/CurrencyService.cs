@@ -18,27 +18,22 @@ namespace currencyApi.BusinessLogic.Services
             _mapper = mapper;
         }
 
-        public IEnumerable<CurrencyDTO> Get( int pageNumber, int pageSize, string sortTerm , bool sortDesc, string searchTerm)
+        public IEnumerable<Currency> Get( int pageNumber, int pageSize, string sortTerm , bool sortDesc, string searchTerm)
         {
             return _currenciesRepo.Get( pageNumber, pageSize,  sortTerm, sortDesc,  searchTerm)
-            .Select(x => _mapper.Map<CurrencyDTO>(x));
+            ;
         }
 
-        public CurrencyDTO Get(long id)
+        public Currency Get(long id)
         {
-            Currency currency = _currenciesRepo.GetOne(id);
-
-            if (currency != null)
-                return _mapper.Map<CurrencyDTO>(currency);
-           
-            return null;
+            return _currenciesRepo.GetOne(id);
         }
 
-        public CurrencyDTO Add(CurrencyDTO currencyDTO)
+        public Currency Add(CurrencyDTO currencyDTO)
         {
             Currency currency = _mapper.Map<Currency>(currencyDTO);
             _currenciesRepo.Add(currency);
-            return _mapper.Map<CurrencyDTO>(currency);
+            return currency;
         }
 
         public void Delete(long Id, bool safeDelete = false)
@@ -46,12 +41,19 @@ namespace currencyApi.BusinessLogic.Services
             _currenciesRepo.Delete(Id, safeDelete);
         }
         
-        public CurrencyDTO Update(CurrencyDTO currencyDTO)
+        public Currency Update(CurrencyDTO currencyDTO)
         {
              Currency currency = _mapper.Map<Currency>(currencyDTO);
             _currenciesRepo.Update(currency);
-            return _mapper.Map<CurrencyDTO>(currency);
+            return currency;
         }
 
+        public IEnumerable<CurrencyDTO> MapToDTO(IEnumerable<Currency> currencies){
+            return currencies.Select(x => _mapper.Map<CurrencyDTO>(x));
+        }
+
+        public CurrencyDTO MapToDTO(Currency currency){
+            return _mapper.Map<CurrencyDTO>(currency);
+        }
     }
 }
