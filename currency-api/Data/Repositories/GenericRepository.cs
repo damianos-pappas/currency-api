@@ -15,12 +15,12 @@ namespace currencyApi.Data
             _unitOfWork = unitOfWork;
         }
 
-        protected IQueryable<T> GetAll()
+        protected virtual IQueryable<T> GetAll()
         {
             return _unitOfWork.Context.Set<T>();
         }
 
-        public void Add(T entity)
+        public virtual void Add(T entity)
         {
             if(entity is IAuditable iAuditable){
                  iAuditable.CreatedAt = DateTime.UtcNow;
@@ -31,7 +31,7 @@ namespace currencyApi.Data
             _unitOfWork.Context.Set<T>().Add(entity);
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
          {
              //Update audit fields
              if(entity is IAuditable iAuditable){
@@ -53,7 +53,7 @@ namespace currencyApi.Data
             }
 
         }
-        public void Delete(long Id, bool throwExceptionIfNotFound =false)
+        public virtual void Delete(long Id, bool throwExceptionIfNotFound =false)
         {
             T existingEntity = _unitOfWork.Context.Set<T>().Find(Id);
             
