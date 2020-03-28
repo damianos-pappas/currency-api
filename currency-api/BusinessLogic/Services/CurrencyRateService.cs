@@ -36,10 +36,10 @@ namespace currencyApi.BusinessLogic.Services
         }
 
         public decimal? GetByRateByCodes(string baseCode, string targetCode ){
-            CurrencyRate currencyrate = _currencyRatesRepo.GetByCodes(baseCode, targetCode);
+            CurrencyRate currencyRate = _currencyRatesRepo.GetByCodes(baseCode, targetCode);
 
-            if (currencyrate != null)
-                return currencyrate.Rate;
+            if (currencyRate != null && currencyRate.IsActive)
+                return currencyRate.Rate;
            
             return null;
         }
