@@ -22,13 +22,36 @@ namespace currencyApi.Data
 
         public void Add(T entity)
         {
+            if(entity is IAuditable iAuditable){
+                 iAuditable.CreatedAt = DateTime.UtcNow;
+                 iAuditable.CreatedByUser = "";
+                 iAuditable.UpdatedAt =  DateTime.UtcNow;
+                 iAuditable.UpdatedByUser = "";
+            }
             _unitOfWork.Context.Set<T>().Add(entity);
         }
 
         public void Update(T entity)
-        {
+         {
+             //Update audit fields
+             if(entity is IAuditable iAuditable){
+                 iAuditable.UpdatedAt =  DateTime.UtcNow;
+                 iAuditable.UpdatedByUser = "";
+            }
+
+            //Attach entity
             _unitOfWork.Context.Set<T>().Attach(entity);
-            _unitOfWork.Context.Entry(entity).State = EntityState.Modified;
+
+            var entry = _unitOfWork.Context.Entry(entity);
+
+            entry.State = EntityState.Modified;
+
+            //Leave Created Audit fields untouched
+            if(entity is IAuditable){
+                entry.Property(x => (x as IAuditable).CreatedAt).IsModified = false;
+                entry.Property(x => (x as IAuditable).CreatedByUser).IsModified = false;
+            }
+
         }
         public void Delete(long Id, bool throwExceptionIfNotFound =false)
         {
