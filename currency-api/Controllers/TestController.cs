@@ -14,51 +14,29 @@ namespace currencyApi.Controllers
     [Route("[controller]")]
     public class TestController : ControllerBase
     {
-        CurrenciesContext _db;
-        IUnitOfWork _unitOfWork;
-
-        ICurrencyService _srv;
-        public TestController(ICurrencyService srv)
+        ICurrencyRateService _srv;
+        public TestController(ICurrencyRateService srv)
         {
             this._srv = srv;
         }
 
         [HttpGet]
-        public IEnumerable<Currency> Get()
+        public IEnumerable<CurrencyRateDTO> Get()
         {
-            // IEnumerable<CurrencyRate> res = _db.CurrencyRates.Include(r => r.BaseCurrency)
-            //                                 .Include(r => r.TargetCurrency).ToList();
-
-            CurrenciesRepository currenciesRepo = new CurrenciesRepository(_unitOfWork);
-            var res = _srv.Get();
-            return res;
+            return null;
 
         }
 
-        
         [HttpPut]
         public void Update([FromBody] Currency currency)
         {
-            // IEnumerable<CurrencyRate> res = _db.CurrencyRates.Include(r => r.BaseCurrency)
-            //                                 .Include(r => r.TargetCurrency).ToList();
 
-            CurrenciesRepository currenciesRepo = new CurrenciesRepository(_unitOfWork);
-            currenciesRepo.Update(currency);
-            _unitOfWork.Commit();
         }
 
         [HttpDelete("{id}")]
         public void Delete( long id)
         {
-            // IEnumerable<CurrencyRate> res = _db.CurrencyRates.Include(r => r.BaseCurrency)
-            //                                 .Include(r => r.TargetCurrency).ToList();
 
-            CurrenciesRepository currenciesRepo = new CurrenciesRepository(_unitOfWork);
-            //var currency = currenciesRepo.Get(id);
-
-            
-            currenciesRepo.Delete(id);
-            _unitOfWork.Commit();
         }
     }
 }
