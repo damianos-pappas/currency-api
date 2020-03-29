@@ -1,3 +1,4 @@
+using System.Linq;
 using AutoMapper;
 using currencyApi.Models;
 
@@ -14,6 +15,9 @@ namespace currencyApi.BusinessLogic.Helpers
               .ForMember(dto => dto.TargetCurrencyCode, opt => opt.MapFrom(src => src.TargetCurrency.Code));
             CreateMap<CurrencyRateDTO, CurrencyRate>();
 
+            CreateMap<User, UserDTO>()
+            .ForMember(dto => dto.UserRoles, opt => opt.MapFrom(src => src.UserRoleRelations.Select(ur=> ur.Role.Description)));
+            CreateMap<UserDTO, User>();
         }
     }
 }
