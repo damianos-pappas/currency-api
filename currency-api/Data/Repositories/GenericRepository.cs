@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Claims;
 using currencyApi.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace currencyApi.Data
@@ -10,9 +12,11 @@ namespace currencyApi.Data
     public abstract class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         protected readonly IUnitOfWork _unitOfWork;
-        public GenericRepository(IUnitOfWork unitOfWork )
+        IHttpContextAccessor _httpContextAccessor;
+        public GenericRepository(IUnitOfWork unitOfWork,  IHttpContextAccessor httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         protected virtual IQueryable<T> GetAll()
@@ -24,9 +28,9 @@ namespace currencyApi.Data
         {
             if(entity is IAuditable iAuditable){
                  iAuditable.CreatedAt = DateTime.UtcNow;
-                 iAuditable.CreatedByUser = "";
+                 iAuditable.CreatedByUser = resolveCurrentHttpUserId();
                  iAuditable.UpdatedAt =  DateTime.UtcNow;
-                 iAuditable.UpdatedByUser = "";
+                 iAuditable.UpdatedByUser = resolveCurrentHttpUserId();
             }
             _unitOfWork.Context.Set<T>().Add(entity);
         }
@@ -36,7 +40,7 @@ namespace currencyApi.Data
              //Update audit fields
              if(entity is IAuditable iAuditable){
                  iAuditable.UpdatedAt =  DateTime.UtcNow;
-                 iAuditable.UpdatedByUser = "";
+                 iAuditable.UpdatedByUser = resolveCurrentHttpUserId();
             }
 
             //Attach entity
@@ -69,6 +73,11 @@ namespace currencyApi.Data
                 (existingEntity as ISoftDelete).IsDeleted = true;
             else
                 _unitOfWork.Context.Set<T>().Remove(existingEntity);
+        }
+
+        private  string resolveCurrentHttpUserId()
+        {
+            return _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
         }
     }
 }

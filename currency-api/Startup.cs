@@ -67,7 +67,8 @@ namespace currency_api
 
             }
 
-            
+            //Add http context accessor to access the userdata that does the http request
+            services.AddHttpContextAccessor();
             //   jwt authentication configuration
             services
                 .AddAuthentication(

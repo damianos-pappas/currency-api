@@ -6,7 +6,7 @@ namespace currencyApi.BusinessLogic.Services
 {
     public interface ICurrencyService 
     {
-        IEnumerable<Currency> Get(int pageNumber, int pageSize, string sortTerm , bool sortDesc , string searchTerm);
+        PagedItems<Currency> Get(int pageNumber, int pageSize, string sortTerm , bool sortDesc , string searchTerm);
 
         Currency Get(long id);
 

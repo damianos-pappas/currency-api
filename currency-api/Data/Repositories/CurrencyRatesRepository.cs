@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using currencyApi.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace currencyApi.Data
 {
     public class CurrencyRatesRepository : GenericRepository<CurrencyRate>, ICurrencyRatesRepository
     {
-        public CurrencyRatesRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public CurrencyRatesRepository(IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, httpContextAccessor)
         {
-
         }
 
         public IEnumerable<CurrencyRate> Get(int pageNumber = 0, int pageSize = 0, string sortTerm = null, bool sortDesc = false, string searchTerm = null)

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using currencyApi.Data;
 using currencyApi.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace currencyApi.Data
 {
     public class UsersRepository : GenericRepository<User>, IUsersRepository
     {
-        public UsersRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public UsersRepository(IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, httpContextAccessor)
         {
         }
 

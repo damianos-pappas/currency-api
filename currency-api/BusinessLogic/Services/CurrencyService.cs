@@ -22,10 +22,9 @@ namespace currencyApi.BusinessLogic.Services
             _mapper = mapper;
         }
 
-        public IEnumerable<Currency> Get(int pageNumber, int pageSize, string sortTerm, bool sortDesc, string searchTerm)
+        public PagedItems<Currency> Get(int pageNumber, int pageSize, string sortTerm, bool sortDesc, string searchTerm)
         {
-            return _currenciesRepo.Get(pageNumber, pageSize, sortTerm, sortDesc, searchTerm)
-            ;
+            return _currenciesRepo.Get(pageNumber, pageSize, sortTerm, sortDesc, searchTerm);
         }
 
         public Currency Get(long id)

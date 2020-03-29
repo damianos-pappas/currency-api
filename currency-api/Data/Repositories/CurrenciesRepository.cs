@@ -2,17 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using currencyApi.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace currencyApi.Data
 {
     public class CurrenciesRepository : GenericRepository<Currency> ,ICurrenciesRepository
     {
-        public CurrenciesRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public CurrenciesRepository(IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, httpContextAccessor)
         {
 
         }
 
-        public IEnumerable<Currency> Get(int pageNumber, int pageSize, string sortTerm , bool sortDesc, string searchTerm)
+        public PagedItems<Currency> Get(int pageNumber, int pageSize, string sortTerm , bool sortDesc, string searchTerm)
         {
             var result = GetAll();
 
@@ -26,7 +27,11 @@ namespace currencyApi.Data
             if(!String.IsNullOrWhiteSpace(sortTerm))
                 result = result.OrderBy(sortTerm, sortDesc);
             
-            return result.AsEnumerable();
+            return new PagedItems<Currency>{
+                Items = result.AsEnumerable(), 
+                PageNumber = pageNumber,
+                TotalPages = result.Count()
+            };
         }
 
          public Currency GetOne(long id)
