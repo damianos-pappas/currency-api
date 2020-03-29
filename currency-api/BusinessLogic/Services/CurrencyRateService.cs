@@ -38,6 +38,11 @@ namespace currencyApi.BusinessLogic.Services
             return null;
         }
 
+        public CurrencyRate GetByCurrencyIds(long baseId, long targetId)
+        {
+            return _currencyRatesRepo.GetByIds(baseId, targetId);
+        }
+
         public decimal? CalculateByCodes(string baseCode, string targetCode, decimal amount)
         {
             var rate = this.GetRateByCodes(baseCode, targetCode);

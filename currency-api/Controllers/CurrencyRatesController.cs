@@ -44,6 +44,8 @@ namespace currencyApi.Controllers
         }
 
         [HttpGet("{baseCode}/{targetCode}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<decimal?> GetRateByCodes(string baseCode, string targetCode)
         {
             var result = _srv.GetRateByCodes(baseCode, targetCode);
@@ -68,11 +70,14 @@ namespace currencyApi.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public ActionResult<CurrencyRateDTO> Add([FromBody] CurrencyRateDTO currencyRateDTO)
         {
+            if(_srv.GetByCurrencyIds(currencyRateDTO.BaseCurrencyId, currencyRateDTO.TargetCurrencyId)!=null)
+                throw new ApplicationException("Currency Pair rate already exists"); 
+                
             var addedCurrencyRate = _srv.Add(currencyRateDTO);
 
             _unitOfWork.Commit();
 
-            return CreatedAtAction( nameof(GetById), new { id = addedCurrencyRate.Id }, _srv.MapToDTO(addedCurrencyRate));
+            return CreatedAtAction(nameof(GetById), new { id = addedCurrencyRate.Id }, _srv.MapToDTO(addedCurrencyRate));
         }
 
         [HttpPut]

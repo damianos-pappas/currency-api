@@ -4,15 +4,17 @@ using currencyApi.Models;
 
 namespace currencyApi.BusinessLogic.Services
 {
-    public interface ICurrencyRateService 
+    public interface ICurrencyRateService
     {
-        IEnumerable<CurrencyRate> Get(int pageNumber, int pageSize , string sortTerm , bool sortDesc, string searchTerm);
+        IEnumerable<CurrencyRate> Get(int pageNumber, int pageSize, string sortTerm, bool sortDesc, string searchTerm);
 
         CurrencyRate Get(long id);
 
-        decimal? GetRateByCodes(string baseCode, string targetCode );
+        decimal? GetRateByCodes(string baseCode, string targetCode);
 
-        decimal? CalculateByCodes(string baseCode, string targetCode , decimal amount);
+        decimal? CalculateByCodes(string baseCode, string targetCode, decimal amount);
+
+        CurrencyRate GetByCurrencyIds(long baseId, long targetId);
 
         IEnumerable<CurrencyRate> GetByBaseCode(string baseCode);
 
