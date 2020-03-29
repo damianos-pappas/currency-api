@@ -57,7 +57,7 @@ Now you can browse in the API from the swagger UI.
 * Thee Layer Achitecture with Controllers Layer, Business Logic Layer(Services), Data Layer (Repositories)
 * Dependency Injection
 * Repositories and Unit of work Patterns
-* abstract repository and central save logic
+* Abstract repository and central save logic
 * Custom extensions methods
 * Mapping to DTOs (viewModels) with AutoMapper
 * Jwt Authentication
