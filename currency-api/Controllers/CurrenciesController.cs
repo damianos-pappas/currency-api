@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using currencyApi.BusinessLogic.Services;
 using currencyApi.Data;
 using currencyApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace currencyApi.Controllers
 {
-
+    [Authorize(Roles = "admin-currencies")]
     [ApiController]
     [Route("[controller]")]
     public class CurrenciesController : ControllerBase

@@ -7,9 +7,11 @@ using Microsoft.EntityFrameworkCore;
 using currencyApi.Models;
 using currencyApi.BusinessLogic.Services;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace currencyApi.Controllers
 {
+    [Authorize(Roles = "admin-users")]
     [ApiController]
     [Route("[controller]")]
     public class UsersController : ControllerBase

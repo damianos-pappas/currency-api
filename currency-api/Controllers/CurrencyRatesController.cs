@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using currencyApi.BusinessLogic.Services;
 using currencyApi.Data;
 using currencyApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace currencyApi.Controllers
 {
+    [Authorize(Roles = "user,admin-rates")]
     [ApiController]
     [Route("[controller]")]
     public class CurrencyRatesController : ControllerBase
@@ -66,13 +68,14 @@ namespace currencyApi.Controllers
                 return Ok(result);
         }
 
+        [Authorize(Roles = "admin-rates")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public ActionResult<CurrencyRateDTO> Add([FromBody] CurrencyRateDTO currencyRateDTO)
         {
-            if(_srv.GetByCurrencyIds(currencyRateDTO.BaseCurrencyId, currencyRateDTO.TargetCurrencyId)!=null)
-                throw new ApplicationException("Currency Pair rate already exists"); 
-                
+            if (_srv.GetByCurrencyIds(currencyRateDTO.BaseCurrencyId, currencyRateDTO.TargetCurrencyId) != null)
+                throw new ApplicationException("Currency Pair rate already exists");
+
             var addedCurrencyRate = _srv.Add(currencyRateDTO);
 
             _unitOfWork.Commit();
@@ -80,6 +83,7 @@ namespace currencyApi.Controllers
             return CreatedAtAction(nameof(GetById), new { id = addedCurrencyRate.Id }, _srv.MapToDTO(addedCurrencyRate));
         }
 
+        [Authorize(Roles = "admin-rates")]
         [HttpPut]
         public CurrencyRateDTO Update([FromBody] CurrencyRateDTO currencyRateDTO)
         {
@@ -90,6 +94,7 @@ namespace currencyApi.Controllers
             return _srv.MapToDTO(updatedCurrencyRate);
         }
 
+        [Authorize(Roles = "admin-rates")]
         [HttpDelete("{id}")]
         public void Delete(long id)
         {
