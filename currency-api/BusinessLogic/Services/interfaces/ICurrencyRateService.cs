@@ -6,7 +6,7 @@ namespace currencyApi.BusinessLogic.Services
 {
     public interface ICurrencyRateService
     {
-        IEnumerable<CurrencyRate> Get(int pageNumber, int pageSize, string sortTerm, bool sortDesc, string searchTerm);
+        PagedItems<CurrencyRate> Get(int pageNumber, int pageSize, string sortTerm, bool sortDesc, string searchTerm);
 
         CurrencyRate Get(long id);
 

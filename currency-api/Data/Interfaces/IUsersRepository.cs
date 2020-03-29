@@ -6,7 +6,7 @@ namespace currencyApi.Data
 {
     public interface IUsersRepository //We do not inherit the base repo interface because we only expose Delete from it
     {
-        IEnumerable<User> Get(int pageNumber, int pageSize, string sortTerm, bool sortDesc, string searchTerm);
+        PagedItems<User> Get(int pageNumber, int pageSize, string sortTerm, bool sortDesc, string searchTerm);
 
         User GetOne(long id);
 

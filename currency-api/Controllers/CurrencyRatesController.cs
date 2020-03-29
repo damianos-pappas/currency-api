@@ -27,11 +27,15 @@ namespace currencyApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<CurrencyRateDTO> Get([FromQuery]int pageNumber = 0, int pageSize = 0, string sortTerm = null, bool sortDesc = false, string searchTerm = null)
+        public PagedItems<CurrencyRateDTO> Get([FromQuery]int pageNumber = 0, int pageSize = 0, string sortTerm = null, bool sortDesc = false, string searchTerm = null)
         {
             var currencyRates = _srv.Get(pageNumber, pageSize, sortTerm, sortDesc, searchTerm);
 
-            return _srv.MapToDTO(currencyRates);
+             return  new PagedItems<CurrencyRateDTO> {
+                Items = _srv.MapToDTO(currencyRates.Items),
+                PageNumber = currencyRates.PageNumber,
+                TotalPages = currencyRates.TotalPages
+            };
         }
 
         [HttpGet("{id:long}")]

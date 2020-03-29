@@ -14,7 +14,7 @@ namespace currencyApi.Data
         {
         }
 
-        public IEnumerable<User> Get(int pageNumber, int pageSize, string sortTerm, bool sortDesc, string searchTerm)
+        public PagedItems<User> Get(int pageNumber, int pageSize, string sortTerm, bool sortDesc, string searchTerm)
         {
             var result = GetAll();
 
@@ -30,7 +30,12 @@ namespace currencyApi.Data
             if (!String.IsNullOrWhiteSpace(sortTerm))
                 result = result.OrderBy(sortTerm, sortDesc);
 
-            return result.AsEnumerable();
+
+            return new PagedItems<User>{
+                Items = result.AsEnumerable(), 
+                PageNumber = pageNumber,
+                TotalPages = result.Count()
+            };
         }
 
         public User GetOne(long id)

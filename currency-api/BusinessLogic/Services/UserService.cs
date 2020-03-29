@@ -19,7 +19,7 @@ namespace currencyApi.BusinessLogic.Services
             _mapper = mapper;
         }
 
-        public IEnumerable<User> Get( int pageNumber, int pageSize, string sortTerm , bool sortDesc, string searchTerm)
+        public PagedItems<User> Get( int pageNumber, int pageSize, string sortTerm , bool sortDesc, string searchTerm)
         {
             return _usersRepo.Get( pageNumber, pageSize,  sortTerm, sortDesc,  searchTerm);
         }

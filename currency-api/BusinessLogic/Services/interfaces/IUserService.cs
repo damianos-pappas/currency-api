@@ -5,7 +5,7 @@ namespace currencyApi.BusinessLogic.Services
 {
     public interface IUserService 
     {
-        IEnumerable<User> Get(int pageNumber, int pageSize, string sortTerm , bool sortDesc , string searchTerm);
+        PagedItems<User> Get(int pageNumber, int pageSize, string sortTerm , bool sortDesc , string searchTerm);
 
         User Get(long id);
 

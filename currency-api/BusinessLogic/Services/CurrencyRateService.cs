@@ -24,7 +24,7 @@ namespace currencyApi.BusinessLogic.Services
             _updateReverseRate = appSettings.getUpdateReverseRateSetting();
         }
 
-        public IEnumerable<CurrencyRate> Get(int pageNumber, int pageSize, string sortTerm, bool sortDesc, string searchTerm)
+        public PagedItems<CurrencyRate> Get(int pageNumber, int pageSize, string sortTerm, bool sortDesc, string searchTerm)
         {
             return _currencyRatesRepo.Get(pageNumber, pageSize, sortTerm, sortDesc, searchTerm);
         }

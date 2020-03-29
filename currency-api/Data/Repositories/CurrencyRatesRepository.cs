@@ -14,7 +14,7 @@ namespace currencyApi.Data
         {
         }
 
-        public IEnumerable<CurrencyRate> Get(int pageNumber = 0, int pageSize = 0, string sortTerm = null, bool sortDesc = false, string searchTerm = null)
+        public PagedItems<CurrencyRate> Get(int pageNumber = 0, int pageSize = 0, string sortTerm = null, bool sortDesc = false, string searchTerm = null)
         {
             var result = GetAll();
             
@@ -38,7 +38,11 @@ namespace currencyApi.Data
                     result = sortDesc? result.OrderByDescending(x=>x.TargetCurrency.Code) : result.OrderBy(x=>x.TargetCurrency.Code);
             }
 
-            return result.AsEnumerable();
+            return new PagedItems<CurrencyRate>{
+                Items = result.AsEnumerable(), 
+                PageNumber = pageNumber,
+                TotalPages = result.Count()
+            };
         }
 
          public CurrencyRate GetOne(long id)

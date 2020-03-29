@@ -25,11 +25,16 @@ namespace currencyApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<UserDTO> Get([FromQuery]int pageNumber = 0, int pageSize = 0, string sortTerm = null, bool sortDesc = false, string searchTerm = null)
+        public PagedItems<UserDTO> Get([FromQuery]int pageNumber = 0, int pageSize = 0, string sortTerm = null, bool sortDesc = false, string searchTerm = null)
         {
             var users = _srv.Get(pageNumber, pageSize, sortTerm, sortDesc, searchTerm);
 
-            return _srv.MapToDTO(users);
+            return new PagedItems<UserDTO>
+            {
+                Items = _srv.MapToDTO(users.Items),
+                PageNumber = users.PageNumber,
+                TotalPages = users.TotalPages
+            };
         }
 
         [HttpGet("{id}")]
