@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.InMemory.ValueGeneration.Internal;
 
 namespace currencyApi.Data
 {
+    //Application's db Context
     public class CurrenciesContext : DbContext
     {
         public CurrenciesContext(DbContextOptions<CurrenciesContext> options)
@@ -14,12 +15,18 @@ namespace currencyApi.Data
         {
         }
 
+        /*******************************************************************
+            DB SETS
+        ********************************************************************/
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<CurrencyRate> CurrencyRates { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<UserRoleRelation> UserRoleRelations { get; set; }
 
+        /*******************************************************************
+            Model DB configuration
+        ********************************************************************/
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Currency>(
@@ -46,8 +53,6 @@ namespace currencyApi.Data
 
                 }
             );
-
-
 
             modelBuilder.Entity<CurrencyRate>(
                 entity =>
@@ -135,6 +140,9 @@ namespace currencyApi.Data
                 }
             );
 
+        /*******************************************************************
+            DATA SEEDING
+        ********************************************************************/
              modelBuilder.Entity<User>().HasData(
                 new User { Id = 1, UserName = "admin", Email = "user@currencies.cur", PasswordHash="xxx",  CreatedAt= DateTime.UtcNow, IsActive=true, IsDeleted=false },
                 new User { Id = 2, UserName = "user", Email = "user@currencies.cur", PasswordHash="xxx",CreatedAt= DateTime.UtcNow, IsActive=true, IsDeleted=false }
@@ -174,6 +182,9 @@ namespace currencyApi.Data
             );
         }
 
+        /*******************************************************************
+            SaveChanges Enrichment
+        ******************************************************************/
             public override int SaveChanges()
                 {
                     var entities = ChangeTracker.Entries()
@@ -189,9 +200,5 @@ namespace currencyApi.Data
 
                     return base.SaveChanges();
                 }
-
-
-
-
     }
 }
