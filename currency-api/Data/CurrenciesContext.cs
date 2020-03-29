@@ -170,10 +170,10 @@ namespace currencyApi.Data
            );
 
             modelBuilder.Entity<UserRole>().HasData(
-               new UserRole { Id = 1, Description = "USER_CURRENCIES_RATES" },
-               new UserRole { Id = 2, Description = "ADMIN_CURRENCIES" },
-               new UserRole { Id = 3, Description = "ADMIN_RATES" },
-               new UserRole { Id = 4, Description = "ADMIN_USERS" }
+               new UserRole { Id = 1, Description = "user" },
+               new UserRole { Id = 2, Description = "admin-currencies" },
+               new UserRole { Id = 3, Description = "admin-rates" },
+               new UserRole { Id = 4, Description = "admin-users" }
            );
 
             modelBuilder.Entity<UserRoleRelation>().HasData(

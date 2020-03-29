@@ -66,7 +66,7 @@ namespace currency_api.Migrations
                         {
                             Id = 1L,
                             Code = "EUR",
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 221, DateTimeKind.Utc).AddTicks(4687),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 120, DateTimeKind.Utc).AddTicks(8768),
                             Description = "Euro",
                             IsActive = true,
                             IsDeleted = false
@@ -75,7 +75,7 @@ namespace currency_api.Migrations
                         {
                             Id = 2L,
                             Code = "USD",
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 221, DateTimeKind.Utc).AddTicks(4741),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 120, DateTimeKind.Utc).AddTicks(8813),
                             Description = "US Dollar",
                             IsActive = true,
                             IsDeleted = false
@@ -84,7 +84,7 @@ namespace currency_api.Migrations
                         {
                             Id = 3L,
                             Code = "CHF",
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 221, DateTimeKind.Utc).AddTicks(4744),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 120, DateTimeKind.Utc).AddTicks(8816),
                             Description = "Swiss Franc",
                             IsActive = true,
                             IsDeleted = false
@@ -93,7 +93,7 @@ namespace currency_api.Migrations
                         {
                             Id = 4L,
                             Code = "GBP",
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 221, DateTimeKind.Utc).AddTicks(4746),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 120, DateTimeKind.Utc).AddTicks(8818),
                             Description = "British Pound",
                             IsActive = true,
                             IsDeleted = false
@@ -102,7 +102,7 @@ namespace currency_api.Migrations
                         {
                             Id = 5L,
                             Code = "JPY",
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 221, DateTimeKind.Utc).AddTicks(4748),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 120, DateTimeKind.Utc).AddTicks(8819),
                             Description = "Japan Yen",
                             IsActive = true,
                             IsDeleted = false
@@ -111,7 +111,7 @@ namespace currency_api.Migrations
                         {
                             Id = 6L,
                             Code = "CAD",
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 221, DateTimeKind.Utc).AddTicks(4750),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 120, DateTimeKind.Utc).AddTicks(8821),
                             Description = "Canadian Dollar",
                             IsActive = true,
                             IsDeleted = false
@@ -166,7 +166,7 @@ namespace currency_api.Migrations
                         {
                             Id = 1L,
                             BaseCurrencyId = 1L,
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 221, DateTimeKind.Utc).AddTicks(6423),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 121, DateTimeKind.Utc).AddTicks(384),
                             IsActive = true,
                             IsDeleted = false,
                             Rate = 1.3764m,
@@ -176,7 +176,7 @@ namespace currency_api.Migrations
                         {
                             Id = 2L,
                             BaseCurrencyId = 1L,
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 221, DateTimeKind.Utc).AddTicks(6489),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 121, DateTimeKind.Utc).AddTicks(458),
                             IsActive = true,
                             IsDeleted = false,
                             Rate = 1.2079m,
@@ -186,7 +186,7 @@ namespace currency_api.Migrations
                         {
                             Id = 3L,
                             BaseCurrencyId = 1L,
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 221, DateTimeKind.Utc).AddTicks(6493),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 121, DateTimeKind.Utc).AddTicks(462),
                             IsActive = true,
                             IsDeleted = false,
                             Rate = 0.8731m,
@@ -196,7 +196,7 @@ namespace currency_api.Migrations
                         {
                             Id = 4L,
                             BaseCurrencyId = 2L,
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 221, DateTimeKind.Utc).AddTicks(6498),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 121, DateTimeKind.Utc).AddTicks(464),
                             IsActive = true,
                             IsDeleted = false,
                             Rate = 76.7200m,
@@ -206,7 +206,7 @@ namespace currency_api.Migrations
                         {
                             Id = 5L,
                             BaseCurrencyId = 3L,
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 221, DateTimeKind.Utc).AddTicks(6500),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 121, DateTimeKind.Utc).AddTicks(562),
                             IsActive = true,
                             IsDeleted = false,
                             Rate = 1.1379m,
@@ -216,7 +216,7 @@ namespace currency_api.Migrations
                         {
                             Id = 6L,
                             BaseCurrencyId = 4L,
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 221, DateTimeKind.Utc).AddTicks(6503),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 121, DateTimeKind.Utc).AddTicks(564),
                             IsActive = true,
                             IsDeleted = false,
                             Rate = 1.5648m,
@@ -266,7 +266,7 @@ namespace currency_api.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 217, DateTimeKind.Utc).AddTicks(4587),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 116, DateTimeKind.Utc).AddTicks(6770),
                             Email = "user@currencies.cur",
                             IsActive = true,
                             IsDeleted = false,
@@ -276,7 +276,7 @@ namespace currency_api.Migrations
                         new
                         {
                             Id = 2L,
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 219, DateTimeKind.Utc).AddTicks(6860),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 119, DateTimeKind.Utc).AddTicks(915),
                             Email = "user@currencies.cur",
                             IsActive = true,
                             IsDeleted = false,
@@ -293,9 +293,13 @@ namespace currency_api.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Description")
+                        .IsUnique()
+                        .HasFilter("[Description] IS NOT NULL");
 
                     b.ToTable("UserRoles");
 
@@ -303,22 +307,22 @@ namespace currency_api.Migrations
                         new
                         {
                             Id = 1L,
-                            Description = "USER_CURRENCIES_RATES"
+                            Description = "user"
                         },
                         new
                         {
                             Id = 2L,
-                            Description = "ADMIN_CURRENCIES"
+                            Description = "admin-currencies"
                         },
                         new
                         {
                             Id = 3L,
-                            Description = "ADMIN_RATES"
+                            Description = "admin-rates"
                         },
                         new
                         {
                             Id = 4L,
-                            Description = "ADMIN_USERS"
+                            Description = "admin-users"
                         });
                 });
 
@@ -366,7 +370,7 @@ namespace currency_api.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 221, DateTimeKind.Utc).AddTicks(3252),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 120, DateTimeKind.Utc).AddTicks(7495),
                             IsActive = true,
                             IsDeleted = false,
                             RoleId = 1L,
@@ -375,7 +379,7 @@ namespace currency_api.Migrations
                         new
                         {
                             Id = 2L,
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 221, DateTimeKind.Utc).AddTicks(3298),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 120, DateTimeKind.Utc).AddTicks(7544),
                             IsActive = true,
                             IsDeleted = false,
                             RoleId = 1L,
@@ -384,7 +388,7 @@ namespace currency_api.Migrations
                         new
                         {
                             Id = 3L,
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 221, DateTimeKind.Utc).AddTicks(3302),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 120, DateTimeKind.Utc).AddTicks(7547),
                             IsActive = true,
                             IsDeleted = false,
                             RoleId = 2L,
@@ -393,7 +397,7 @@ namespace currency_api.Migrations
                         new
                         {
                             Id = 4L,
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 221, DateTimeKind.Utc).AddTicks(3375),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 120, DateTimeKind.Utc).AddTicks(7548),
                             IsActive = true,
                             IsDeleted = false,
                             RoleId = 3L,
@@ -402,7 +406,7 @@ namespace currency_api.Migrations
                         new
                         {
                             Id = 5L,
-                            CreatedAt = new DateTime(2020, 3, 29, 12, 55, 5, 221, DateTimeKind.Utc).AddTicks(3378),
+                            CreatedAt = new DateTime(2020, 3, 29, 16, 58, 23, 120, DateTimeKind.Utc).AddTicks(7550),
                             IsActive = true,
                             IsDeleted = false,
                             RoleId = 4L,

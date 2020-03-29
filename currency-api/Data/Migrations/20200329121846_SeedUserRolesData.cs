@@ -12,10 +12,10 @@ namespace currency_api.Migrations
                 columns: new[] { "Id", "Description" },
                 values: new object[,]
                 {
-                    { 4L, "ADMIN_USERS" },
-                    { 3L, "ADMIN_RATES" },
-                    { 2L, "ADMIN_CURRENCIES" },
-                    { 1L, "USER_CURRENCIES_RATES" }
+                    { 4L, "admin-users" },
+                    { 3L, "admin-rates" },
+                    { 2L, "admin-currencies" },
+                    { 1L, "user" }
                 });
 
             migrationBuilder.InsertData(
