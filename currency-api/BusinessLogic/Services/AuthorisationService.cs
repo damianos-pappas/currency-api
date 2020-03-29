@@ -35,6 +35,10 @@ namespace currencyApi.BusinessLogic.Services
                 return null;
             }
 
+            if(!user.IsActive){
+                throw new ApplicationException("User is not active");
+            }
+
             return new UserLoginDTO
             {
                 UserName = user.UserName,
