@@ -6,7 +6,7 @@ using currencyApi.Data;
 using currencyApi.Models;
 
 
-namespace UserApi.BusinessLogic.Services
+namespace currencyApi.BusinessLogic.Services
 {
     public class UserService : IUserService 
     {

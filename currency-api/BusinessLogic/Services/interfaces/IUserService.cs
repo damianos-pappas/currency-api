@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using currencyApi.Models;
 
-namespace UserApi.BusinessLogic.Services
+namespace currencyApi.BusinessLogic.Services
 {
     public interface IUserService 
     {

@@ -44,7 +44,8 @@ namespace currency_api
 
             services.AddScoped<ICurrencyService, CurrencyService>();
             services.AddScoped<ICurrencyRateService, CurrencyRateService>();
-
+            services.AddScoped<IUserService, UserService>();
+            
             services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers().AddNewtonsoftJson(options =>
