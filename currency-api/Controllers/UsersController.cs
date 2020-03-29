@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using currencyApi.Models;
-using UserApi.BusinessLogic.Services;
+using currencyApi.BusinessLogic.Services;
 
-namespace userApi.Controllers
+namespace currencyApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
