@@ -41,7 +41,7 @@ namespace currency_api.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     BaseCurrencyId = table.Column<long>(nullable: false),
                     TargetCurrencyId = table.Column<long>(nullable: false),
-                    Rate = table.Column<decimal>(nullable: false)
+                    Rate = table.Column<decimal>(nullable: false, type: "decimal(18, 10)")
                 },
                 constraints: table =>
                 {
