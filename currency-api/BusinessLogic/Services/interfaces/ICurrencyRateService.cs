@@ -6,19 +6,23 @@ namespace currencyApi.BusinessLogic.Services
 {
     public interface ICurrencyRateService 
     {
-        IEnumerable<CurrencyRateDTO> Get(int pageNumber, int pageSize , string sortTerm , bool sortDesc, string searchTerm);
+        IEnumerable<CurrencyRate> Get(int pageNumber, int pageSize , string sortTerm , bool sortDesc, string searchTerm);
 
-        CurrencyRateDTO Get(long id);
+        CurrencyRate Get(long id);
 
         decimal? GetByRateByCodes(string baseCode, string targetCode );
         
-        IEnumerable<CurrencyRateDTO> GetByBaseCode(string baseCode);
+        IEnumerable<CurrencyRate> GetByBaseCode(string baseCode);
 
-        CurrencyRateDTO Add(CurrencyRateDTO entity);
+        CurrencyRate Add(CurrencyRateDTO entity);
 
         void Delete(long Id, bool safeDelete = false);
 
-        CurrencyRateDTO Update(CurrencyRateDTO entity);
+        CurrencyRate Update(CurrencyRateDTO entity);
+
+        IEnumerable<CurrencyRateDTO> MapToDTO(IEnumerable<CurrencyRate> currencyRates);
+
+        CurrencyRateDTO MapToDTO(CurrencyRate currencyRate);
 
     }
 }

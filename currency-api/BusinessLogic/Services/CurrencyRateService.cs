@@ -18,21 +18,14 @@ namespace currencyApi.BusinessLogic.Services
             _mapper = mapper;
         }
 
-        public IEnumerable<CurrencyRateDTO> Get(int pageNumber, int pageSize, string sortTerm, bool sortDesc, string searchTerm)
+        public IEnumerable<CurrencyRate> Get(int pageNumber, int pageSize, string sortTerm, bool sortDesc, string searchTerm)
         {
-            return _currencyRatesRepo.Get(pageNumber, pageSize, sortTerm, sortDesc, searchTerm)
-                                    .Select(x => _mapper.Map<CurrencyRateDTO>(x));
-
+            return _currencyRatesRepo.Get(pageNumber, pageSize, sortTerm, sortDesc, searchTerm);
         }
 
-        public CurrencyRateDTO Get(long id)
+        public CurrencyRate Get(long id)
         {
-            CurrencyRate currencyrate = _currencyRatesRepo.GetOne(id);
-
-            if (currencyrate != null)
-                return _mapper.Map<CurrencyRateDTO>(currencyrate);
-           
-            return null;
+            return _currencyRatesRepo.GetOne(id);
         }
 
         public decimal? GetByRateByCodes(string baseCode, string targetCode ){
@@ -44,15 +37,15 @@ namespace currencyApi.BusinessLogic.Services
             return null;
         }
         
-        public IEnumerable<CurrencyRateDTO> GetByBaseCode(string baseCode){
-            return _currencyRatesRepo.GetByBaseCode(baseCode).Select(x => _mapper.Map<CurrencyRateDTO>(x));
+        public IEnumerable<CurrencyRate> GetByBaseCode(string baseCode){
+            return _currencyRatesRepo.GetByBaseCode(baseCode);
         }
 
-        public CurrencyRateDTO Add(CurrencyRateDTO currencyRateDTO)
+        public CurrencyRate Add(CurrencyRateDTO currencyRateDTO)
         {
             CurrencyRate currencyRate = _mapper.Map<CurrencyRate>(currencyRateDTO);
             _currencyRatesRepo.Add(currencyRate);
-            return _mapper.Map<CurrencyRateDTO>(currencyRate);
+            return currencyRate;
         }
 
         public void Delete(long Id, bool safeDelete = false)
@@ -60,12 +53,19 @@ namespace currencyApi.BusinessLogic.Services
             _currencyRatesRepo.Delete(Id, safeDelete);
         }
 
-        public CurrencyRateDTO Update(CurrencyRateDTO currencyRateDTO)
+        public CurrencyRate Update(CurrencyRateDTO currencyRateDTO)
         {
             CurrencyRate currencyRate = _mapper.Map<CurrencyRate>(currencyRateDTO);
             _currencyRatesRepo.Update(currencyRate);
-            return _mapper.Map<CurrencyRateDTO>(currencyRate);
+            return currencyRate;
         }
 
+        public IEnumerable<CurrencyRateDTO> MapToDTO(IEnumerable<CurrencyRate> currencyRates){
+            return currencyRates.Select(x => _mapper.Map<CurrencyRateDTO>(x));
+        }
+
+        public CurrencyRateDTO MapToDTO(CurrencyRate currencyRate){
+            return _mapper.Map<CurrencyRateDTO>(currencyRate);
+        }
     }
 }
