@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace currencyApi.Controllers
 {
+
     [ApiController]
     [Route("[controller]")]
     public class CurrenciesController : ControllerBase
@@ -22,7 +23,7 @@ namespace currencyApi.Controllers
             this._unitOfWork = unitOfWork;
         }
 
-          [HttpGet]
+        [HttpGet]
         public IEnumerable<CurrencyDTO> Get([FromQuery]int pageNumber =0, int pageSize =0, string sortTerm = null, bool sortDesc = false, string searchTerm = null)
         {
             var currencies = _srv.Get( pageNumber,  pageSize,  sortTerm, sortDesc, searchTerm);
@@ -31,21 +32,24 @@ namespace currencyApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public CurrencyDTO Get(long id)
+        public ActionResult<CurrencyDTO> GetById(long id)
         {
             var currency = _srv.Get(id);
 
-            return  _srv.MapToDTO(currency);
+            if (currency == null)
+                return NotFound("Currency not found");
+            else
+                return  Ok(_srv.MapToDTO(currency));
         }
 
         [HttpPost]
-        public CurrencyDTO Add([FromBody] CurrencyDTO currencyDTO)
+        public ActionResult<CurrencyDTO> Add([FromBody] CurrencyDTO currencyDTO)
         {
             var addedCurrency = _srv.Add(currencyDTO);
 
             _unitOfWork.Commit();
 
-            return _srv.MapToDTO(addedCurrency);
+            return CreatedAtAction( nameof(GetById), new { id = addedCurrency.Id }, _srv.MapToDTO(addedCurrency));
         }
 
         [HttpPut]

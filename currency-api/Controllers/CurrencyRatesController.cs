@@ -19,7 +19,7 @@ namespace currencyApi.Controllers
         public CurrencyRatesController(ICurrencyRateService srv, IUnitOfWork unitOfWork)
         {
             this._srv = srv;
-            
+
             this._unitOfWork = unitOfWork;
         }
 
@@ -31,22 +31,46 @@ namespace currencyApi.Controllers
             return _srv.MapToDTO(currencyRates);
         }
 
-        [HttpGet("{id}")]
-        public CurrencyRateDTO Get(long id)
+        [HttpGet("{id:long}")]
+        public ActionResult<CurrencyRateDTO> GetById(long id)
         {
             var currencyRate = _srv.Get(id);
 
-            return _srv.MapToDTO(currencyRate);
+            if (currencyRate == null)
+                return NotFound("Currency Rate not found");
+            else
+                return Ok(_srv.MapToDTO(currencyRate));
+        }
+
+        [HttpGet("{baseCode}/{targetCode}")]
+        public ActionResult<decimal?> GetRateByCodes(string baseCode, string targetCode)
+        {
+            var result = _srv.GetRateByCodes(baseCode, targetCode);
+
+            if (result == null)
+                return NotFound("Currency Rate not found");
+            else
+                return Ok(result);
+        }
+
+        [HttpGet("calculate/{baseCode}/{targetCode}/{amount}")]
+        public ActionResult<decimal?> CalculateByCodes(string baseCode, string targetCode, decimal amount)
+        {
+            var result = _srv.CalculateByCodes(baseCode, targetCode, amount);
+            if (result == null)
+                return NotFound("Currency Rate not found");
+            else
+                return Ok(result);
         }
 
         [HttpPost]
-        public CurrencyRateDTO Add([FromBody] CurrencyRateDTO currencyRateDTO)
+        public ActionResult<CurrencyRateDTO> Add([FromBody] CurrencyRateDTO currencyRateDTO)
         {
             var addedCurrencyRate = _srv.Add(currencyRateDTO);
 
             _unitOfWork.Commit();
 
-            return _srv.MapToDTO(addedCurrencyRate);
+            return CreatedAtAction( nameof(GetById), new { id = addedCurrencyRate.Id }, _srv.MapToDTO(addedCurrencyRate));
         }
 
         [HttpPut]
@@ -63,6 +87,9 @@ namespace currencyApi.Controllers
         public void Delete(long id)
         {
             _srv.Delete(id);
+
+            _unitOfWork.Commit();
+
         }
     }
 }

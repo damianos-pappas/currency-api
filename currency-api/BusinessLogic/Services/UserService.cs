@@ -56,7 +56,13 @@ namespace currencyApi.BusinessLogic.Services
             return user;
         }
 
-        public IEnumerable<UserDTO> MapToDTO(IEnumerable<User> users){
+        public IEnumerable<string> GetUserRoles()
+        {
+            return _usersRepo.GetUserRoles().Select(ur => ur.Description);
+        }
+
+        public IEnumerable<UserDTO> MapToDTO(IEnumerable<User> users)
+        {
             return users.Select(x => _mapper.Map<UserDTO>(x));
         }
 

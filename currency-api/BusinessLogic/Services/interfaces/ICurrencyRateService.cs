@@ -10,8 +10,10 @@ namespace currencyApi.BusinessLogic.Services
 
         CurrencyRate Get(long id);
 
-        decimal? GetByRateByCodes(string baseCode, string targetCode );
-        
+        decimal? GetRateByCodes(string baseCode, string targetCode );
+
+        decimal? CalculateByCodes(string baseCode, string targetCode , decimal amount);
+
         IEnumerable<CurrencyRate> GetByBaseCode(string baseCode);
 
         CurrencyRate Add(CurrencyRateDTO entity);

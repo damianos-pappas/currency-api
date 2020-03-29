@@ -15,6 +15,7 @@ namespace currencyApi.BusinessLogic.Services
 
         User UpdateWithoutPassword(UserDTO entity);
 
+        IEnumerable<string> GetUserRoles();
         IEnumerable<UserDTO> MapToDTO(IEnumerable<User> users);
 
         UserDTO MapToDTO(User user);

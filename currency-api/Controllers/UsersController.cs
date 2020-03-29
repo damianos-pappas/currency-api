@@ -30,15 +30,24 @@ namespace currencyApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public UserDTO Get(long id)
+        public ActionResult<UserDTO> GetById(long id)
         {
             var user = _srv.Get(id);
 
-            return  _srv.MapToDTO(user);
+            if (user == null)
+                return NotFound("User not found");
+            else
+                return  Ok(_srv.MapToDTO(user));
+        }
+
+        [HttpGet("roles")]
+        public IEnumerable<string> GetUserRoles()
+        {
+            return _srv.GetUserRoles();
         }
 
         [HttpPost]
-        public UserDTO Add([FromBody] UserDTO userDTO)
+        public ActionResult<UserDTO> Add([FromBody] UserDTO userDTO)
         {
             var addedUser = _srv.Add(userDTO);
 
@@ -46,7 +55,7 @@ namespace currencyApi.Controllers
 
             var addedUserWithRoles = _srv.Get(addedUser.Id);
 
-            return _srv.MapToDTO(addedUserWithRoles);
+            return CreatedAtAction( nameof(GetById), new { id = addedUserWithRoles.Id }, _srv.MapToDTO(addedUserWithRoles));
         }
 
         [HttpPut]

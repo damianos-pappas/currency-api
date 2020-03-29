@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using currencyApi.BusinessLogic.Services;
 using currencyApi.Data;
 using currencyApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace currencyApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class AuthController : ControllerBase
@@ -22,16 +24,22 @@ namespace currencyApi.Controllers
             this._unitOfWork = unitOfWork;
         }
 
+        [AllowAnonymous]
         [HttpPost, Route("login")]
-        public UserLoginDTO Login([FromBody] UserLoginDTO userLoginDTO)
+        public ActionResult<UserLoginDTO> Login([FromBody] UserLoginDTO userLoginDTO)
         {
-            return _srv.Login(userLoginDTO);
+            var response = _srv.Login(userLoginDTO);
+            if (response == null)
+                return Unauthorized("Wrong username or password");
+            else 
+            return Ok(response);
         }
 
-        [HttpPost,Route("reset-password")]
+        [HttpPost, Route("reset-password")]
         public void ResetPassword([FromBody] UserLoginDTO userLoginDTO)
         {
             _srv.UpdatePassword(userLoginDTO);
+            _unitOfWork.Commit();
         }
     }
 }
