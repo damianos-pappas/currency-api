@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using currencyApi.Data;
+using currencyApi.Helpers;
 using currencyApi.Models;
+using Microsoft.Extensions.Options;
 
 namespace currencyApi.BusinessLogic.Services
 {
@@ -11,11 +13,15 @@ namespace currencyApi.BusinessLogic.Services
     {
         ICurrencyRatesRepository _currencyRatesRepo;
         IMapper _mapper;
+        bool _updateReverseRate = false;
 
-        public CurrencyRateService(IMapper mapper, ICurrencyRatesRepository currencyRatesRepo)
+        public CurrencyRateService(IMapper mapper, ICurrencyRatesRepository currencyRatesRepo, IOptions<AppSettings> appSettingsOptions)
         {
             _currencyRatesRepo = currencyRatesRepo;
             _mapper = mapper;
+
+            AppSettings appSettings = appSettingsOptions.Value;
+            _updateReverseRate = appSettings.getUpdateReverseRateSetting();
         }
 
         public IEnumerable<CurrencyRate> Get(int pageNumber, int pageSize, string sortTerm, bool sortDesc, string searchTerm)
@@ -71,6 +77,13 @@ namespace currencyApi.BusinessLogic.Services
         {
             CurrencyRate currencyRate = _mapper.Map<CurrencyRate>(currencyRateDTO);
             _currencyRatesRepo.Update(currencyRate);
+            
+            //Update the reverse currency pair rate depending on the setting
+            if( _updateReverseRate){
+                CurrencyRate oppositeCurrencyRate = _currencyRatesRepo.GetByIds(currencyRate.TargetCurrencyId, currencyRate.BaseCurrencyId);
+                if( oppositeCurrencyRate != null && currencyRate.Rate != 0)
+                    oppositeCurrencyRate.Rate = 1/currencyRate.Rate;
+            }
             return currencyRate;
         }
 

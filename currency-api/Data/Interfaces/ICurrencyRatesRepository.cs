@@ -13,7 +13,7 @@ namespace currencyApi.Data
         CurrencyRate GetByCodes(string baseCode, string targetCode);
 
         CurrencyRate GetByIds(long baseId, long targetId);
-
+        
         IEnumerable<CurrencyRate> GetByBaseCode(string baseCode);
 
     }

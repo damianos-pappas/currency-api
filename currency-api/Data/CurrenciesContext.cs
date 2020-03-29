@@ -41,9 +41,6 @@ namespace currencyApi.Data
 
                     entity.HasQueryFilter(r => r.IsDeleted == false);
 
-                    if (Database.IsInMemory())
-                        entity.Property(c => c.Id).HasValueGenerator<InMemoryIntegerValueGenerator<long>>();
-
                     entity.HasIndex(c => c.Code).IsUnique();
 
                     entity.Property(c => c.Code).HasMaxLength(3)
@@ -66,8 +63,7 @@ namespace currencyApi.Data
 
                     entity.HasQueryFilter(r => r.IsDeleted == false);
 
-                    if (Database.IsInMemory())
-                        entity.Property(c => c.Id).HasValueGenerator<InMemoryIntegerValueGenerator<long>>();
+
 
                     entity.HasIndex(r => new { r.BaseCurrencyId, r.TargetCurrencyId })
                           .IsUnique();
@@ -111,8 +107,6 @@ namespace currencyApi.Data
 
                     entity.HasIndex(r => r.Description).IsUnique();
 
-                    if (Database.IsInMemory())
-                        entity.Property(c => c.Id).HasValueGenerator<InMemoryIntegerValueGenerator<long>>();
                 }
             );
 
@@ -177,11 +171,11 @@ namespace currencyApi.Data
            );
 
             modelBuilder.Entity<UserRoleRelation>().HasData(
-                new UserRoleRelation { Id = 1, UserId = 1, RoleId = 1, CreatedAt = DateTime.UtcNow, IsActive = true, IsDeleted = false },
-                new UserRoleRelation { Id = 2, UserId = 2, RoleId = 1, CreatedAt = DateTime.UtcNow, IsActive = true, IsDeleted = false },
-                new UserRoleRelation { Id = 3, UserId = 2, RoleId = 2, CreatedAt = DateTime.UtcNow, IsActive = true, IsDeleted = false },
-                new UserRoleRelation { Id = 4, UserId = 2, RoleId = 3, CreatedAt = DateTime.UtcNow, IsActive = true, IsDeleted = false },
-                new UserRoleRelation { Id = 5, UserId = 2, RoleId = 4, CreatedAt = DateTime.UtcNow, IsActive = true, IsDeleted = false }
+                new UserRoleRelation { Id = 1, UserId = 2, RoleId = 1, CreatedAt = DateTime.UtcNow, IsActive = true, IsDeleted = false },
+                new UserRoleRelation { Id = 2, UserId = 1, RoleId = 1, CreatedAt = DateTime.UtcNow, IsActive = true, IsDeleted = false },
+                new UserRoleRelation { Id = 3, UserId = 1, RoleId = 2, CreatedAt = DateTime.UtcNow, IsActive = true, IsDeleted = false },
+                new UserRoleRelation { Id = 4, UserId = 1, RoleId = 3, CreatedAt = DateTime.UtcNow, IsActive = true, IsDeleted = false },
+                new UserRoleRelation { Id = 5, UserId = 1, RoleId = 4, CreatedAt = DateTime.UtcNow, IsActive = true, IsDeleted = false }
             );
 
             modelBuilder.Entity<Currency>().HasData(
