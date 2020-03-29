@@ -64,6 +64,16 @@ namespace currencyApi.Data
             return result.FirstOrDefault();
         }
 
+         public CurrencyRate GetByIds(long baseId, long targetId )
+        {
+            var result = GetAll();
+            
+            result = result.Include(x => x.BaseCurrency).Include(x =>x.TargetCurrency);
+
+            result = result.Where(x => x.BaseCurrency.Id == baseId && x.TargetCurrency.Id == targetId);
+
+            return result.FirstOrDefault();
+        }
          public IEnumerable<CurrencyRate> GetByBaseCode(string baseCode)
         {
             var result = GetAll();
