@@ -8,7 +8,6 @@ namespace currencyApi.BusinessLogic.Services
     {
         UserLoginDTO Login(UserLoginDTO userLoginDTO);
 
-        bool UpdatePassword(UserLoginDTO userLoginDTO);
-
+        void UpdatePassword(UserLoginDTO userLoginDTO);
     }
 }
