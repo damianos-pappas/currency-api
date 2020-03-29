@@ -140,6 +140,21 @@ namespace currencyApi.Data
                 new User { Id = 2, UserName = "user", Email = "user@currencies.cur", PasswordHash="xxx",CreatedAt= DateTime.UtcNow, IsActive=true, IsDeleted=false }
             );
 
+             modelBuilder.Entity<UserRole>().HasData(
+                new UserRole { Id = 1, Description = "USER_CURRENCIES_RATES"},
+                new UserRole { Id = 2, Description = "ADMIN_CURRENCIES"},
+                new UserRole { Id = 3, Description = "ADMIN_RATES"},
+                new UserRole { Id = 4, Description = "ADMIN_USERS"}
+            );
+
+            modelBuilder.Entity<UserRoleRelation>().HasData(
+                new UserRoleRelation { Id = 1, UserId = 1, RoleId = 1, CreatedAt= DateTime.UtcNow, IsActive=true, IsDeleted=false },
+                new UserRoleRelation { Id = 2, UserId = 2, RoleId = 1, CreatedAt= DateTime.UtcNow, IsActive=true, IsDeleted=false },
+                new UserRoleRelation { Id = 3, UserId = 2, RoleId = 2, CreatedAt= DateTime.UtcNow, IsActive=true, IsDeleted=false },
+                new UserRoleRelation { Id = 4, UserId = 2, RoleId = 3, CreatedAt= DateTime.UtcNow, IsActive=true, IsDeleted=false },
+                new UserRoleRelation { Id = 5, UserId = 2, RoleId = 4, CreatedAt= DateTime.UtcNow, IsActive=true, IsDeleted=false }
+            );
+
             modelBuilder.Entity<Currency>().HasData(
                 new Currency { Id = 1, Code = "EUR", Description = "Euro", CreatedAt= DateTime.UtcNow, IsActive=true, IsDeleted=false },
                 new Currency { Id = 2, Code = "USD", Description = "US Dollar", CreatedAt= DateTime.UtcNow, IsActive=true, IsDeleted=false  },
