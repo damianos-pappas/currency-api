@@ -35,7 +35,7 @@ dotnet run
   "password": "admin123",
 }
 ```
-Or the simple user account:
+Or the simple user account (Can access -read- only the currency rates, login or reset password):
 ```javascript
 {
   "userName": "user",
