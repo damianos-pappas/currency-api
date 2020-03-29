@@ -8,7 +8,9 @@ namespace currencyApi.Data
         public UnitOfWork(CurrenciesContext context)
         {
             Context = context;
+            Context.Database.EnsureCreated();
         }
+        
         public void Commit()
         {
             Context.SaveChanges();
