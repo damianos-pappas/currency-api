@@ -12,11 +12,13 @@ namespace currencyApi.Data
 
         IEnumerable<UserRole> GetUserRoles ();
 
+        User GetByUsername(string username);
+
         IEnumerable<UserRole> GetUserRoles (IEnumerable<string> roleNames);
 
          void UpdateWithoutPassword(User user, IEnumerable<UserRole> roles);
 
-         void UpdatePasswordOnly(User user);
+         void UpdatePasswordOnly(long userId, string passwordHash);
 
          void Add(User user, IEnumerable<UserRole> roles);
 

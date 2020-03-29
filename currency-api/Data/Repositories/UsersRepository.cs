@@ -43,6 +43,16 @@ namespace UserApi.Data
             return result.FirstOrDefault();
         }
 
+        public User GetByUsername(string username)
+        {
+            var result = GetAll();
+
+            result = result.Include(u => u.UserRoleRelations).ThenInclude(ur => ur.Role);
+
+            result = result.Where(x => x.UserName == username);
+
+            return result.FirstOrDefault();
+        }
         public IEnumerable<UserRole> GetUserRoles(IEnumerable<string> roleNames)
         {
             if (roleNames == null) return new List<UserRole>();
@@ -79,10 +89,10 @@ namespace UserApi.Data
             }));
         }
 
-        public void UpdatePasswordOnly(User user)
+        public void UpdatePasswordOnly(long userId, string passwordHash)
         {
-            User retrievedUser = GetOne(user.Id);
-            retrievedUser.PasswordHash = user.PasswordHash;
+            User retrievedUser = GetOne(userId);
+            retrievedUser.PasswordHash = passwordHash;
         }
 
         public override void Add(User user)
