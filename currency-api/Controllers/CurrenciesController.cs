@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using currencyApi.BusinessLogic.Services;
 using currencyApi.Data;
 using currencyApi.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -43,6 +44,7 @@ namespace currencyApi.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public ActionResult<CurrencyDTO> Add([FromBody] CurrencyDTO currencyDTO)
         {
             var addedCurrency = _srv.Add(currencyDTO);

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using currencyApi.Models;
 using currencyApi.BusinessLogic.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace currencyApi.Controllers
 {
@@ -47,6 +48,7 @@ namespace currencyApi.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public ActionResult<UserDTO> Add([FromBody] UserDTO userDTO)
         {
             var addedUser = _srv.Add(userDTO);
