@@ -22,15 +22,17 @@ namespace currencyApi.Controllers
             this._unitOfWork = unitOfWork;
         }
 
-         [HttpGet]
-        public IEnumerable<UserDTO> Get([FromQuery]int pageNumber =0, int pageSize =0, string sortTerm = null, bool sortDesc = false, string searchTerm = null)
+        [HttpGet]
+        public IEnumerable<UserDTO> Get([FromQuery]int pageNumber = 0, int pageSize = 0, string sortTerm = null, bool sortDesc = false, string searchTerm = null)
         {
-            var users = _srv.Get( pageNumber,  pageSize,  sortTerm, sortDesc, searchTerm);
-            
+            var users = _srv.Get(pageNumber, pageSize, sortTerm, sortDesc, searchTerm);
+
             return _srv.MapToDTO(users);
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<UserDTO> GetById(long id)
         {
             var user = _srv.Get(id);
@@ -38,7 +40,7 @@ namespace currencyApi.Controllers
             if (user == null)
                 return NotFound("User not found");
             else
-                return  Ok(_srv.MapToDTO(user));
+                return Ok(_srv.MapToDTO(user));
         }
 
         [HttpGet("roles")]
@@ -57,7 +59,7 @@ namespace currencyApi.Controllers
 
             var addedUserWithRoles = _srv.Get(addedUser.Id);
 
-            return CreatedAtAction( nameof(GetById), new { id = addedUserWithRoles.Id }, _srv.MapToDTO(addedUserWithRoles));
+            return CreatedAtAction(nameof(GetById), new { id = addedUserWithRoles.Id }, _srv.MapToDTO(addedUserWithRoles));
         }
 
         [HttpPut]
@@ -73,7 +75,7 @@ namespace currencyApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void Delete( long id)
+        public void Delete(long id)
         {
             _srv.Delete(id);
 

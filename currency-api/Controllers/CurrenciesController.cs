@@ -33,6 +33,8 @@ namespace currencyApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<CurrencyDTO> GetById(long id)
         {
             var currency = _srv.Get(id);
