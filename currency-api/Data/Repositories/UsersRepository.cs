@@ -5,7 +5,7 @@ using currencyApi.Data;
 using currencyApi.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace UserApi.Data
+namespace currencyApi.Data
 {
     public class UsersRepository : GenericRepository<User>, IUsersRepository
     {

@@ -41,6 +41,7 @@ namespace currency_api
 
             services.AddScoped<ICurrenciesRepository, CurrenciesRepository>();
             services.AddScoped<ICurrencyRatesRepository, CurrencyRatesRepository>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
 
             services.AddScoped<ICurrencyService, CurrencyService>();
             services.AddScoped<ICurrencyRateService, CurrencyRateService>();
