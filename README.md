@@ -21,6 +21,12 @@ It is a Demo CRUD application.
     "DefaultConnection": "Server=localhost;Database=YOUR_DB_NAME;User Id=YOUR_DB_USER;Password=YOUR_PASSWORD;"
   }
 ```
+If you chose to use Sql Server, in a terminal, navigate in the project's folder and run the command:
+
+```bash
+dotnet ef database update
+```
+
 3. In a terminal, navigate in the currency-api folder and run the command
 ```bash
 dotnet run
